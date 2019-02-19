@@ -1,0 +1,28 @@
+###################################
+# Profile: kafka-tools-1
+#
+# - 1 Zookeeper
+# - 1 Broker
+# - 1 Kafka Tools
+###################################
+
+zk:
+  ports:
+    2181:
+  groups:
+    - preflight
+    - zookeeper
+kafka:
+  memory: 2048
+  cpus: 2
+  ports:
+    9092:
+  groups:
+    - preflight
+    - broker
+kafka-tools:
+  memory: 2048
+  cpus: 2
+  groups:
+    - preflight
+    - tools
