@@ -1,5 +1,11 @@
 # cp-ansible-vagrant #
 
+```bash
+git clone git@github.com:cricket007/cp-ansible-vagrant.git
+cd cp-ansible-vagrant
+git submodule init && git submodule update --remote
+```
+
 Using Vagrant to get up and running.
 
 1) Install VirtualBox https://www.virtualbox.org/  
