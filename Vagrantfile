@@ -104,21 +104,27 @@ Vagrant.configure("2") do |config|
   group_vars = {
     "all:vars" => {"security_mode" => $cp_security_mode},
     "broker:vars" => {
-      "kafka_log_retention_hours" => $kafka_retention_hours,
-      "kafka_offsets_topic_replication_factor" => replication_factor,
-      "kafka_transaction_state_log_replication_factor" => replication_factor,
-      "kafka_confluent_metrics_reporter_topic_replicas" => replication_factor
+      "kafka_broker_config" => "{
+        \"log.retention.hours\": #{$kafka_retention_hours},
+        \"offsets.topic.replication.factor\": #{replication_factor},
+        \"transaction.state.log.replication.factor\": #{replication_factor},
+        \"confluent.metrics.reporter.topic.replicas\": #{replication_factor}
+      }".gsub(/[[:space:]]/,'')
     },
     "connect-distributed:vars" => {
-      "connect_distributed_config_storage_replication_factor" => replication_factor,
-      "connect_distributed_offset_storage_replication_factor" => replication_factor,
-      "connect_distributed_status_storage_replication_factor" => replication_factor
+      "kafka_connect_config" => "{
+        \"config.storage.replication.factor\": #{replication_factor},
+        \"offset.storage.replication.factor\": #{replication_factor},
+        \"status.storage.replication.factor\": #{replication_factor}
+      }".gsub(/[[:space:]]/,'')
     },
     "control-center:vars" => {
-      "confluent_controlcenter_internal_topics_replication" => replication_factor,
-      "confluent_metrics_topic_replication" => replication_factor,
-      "confluent_monitoring_interceptor_topic_replication" => replication_factor,
-      "confluent_controlcenter_command_topic_replication" => replication_factor
+      "control_center_config" => "{
+        \"confluent.controlcenter.command.topic.replication\": #{replication_factor},
+        \"confluent.controlcenter.internal.topics.replication\": #{replication_factor},
+        \"confluent.metrics.topic.replication\": #{replication_factor},
+        \"confluent.monitoring.interceptor.topic.replication\": #{replication_factor},
+      }".gsub(/[[:space:]]/,'')
     }
   }
   groups = groups.merge(group_vars)
