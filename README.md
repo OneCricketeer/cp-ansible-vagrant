@@ -1,4 +1,4 @@
-# cp-ansible-vagrant #
+# cp-ansible-vagrant
 
 ```bash
 git clone git@github.com:cricket007/cp-ansible-vagrant.git
@@ -30,8 +30,9 @@ All profiles have at least one broker and one zookeeper unless otherwise mention
 |-|-|
 |`kafka-1`||
 |`kafka-cluster-3`|<ul><li>3 Zookeepers</li><li>3 Brokers</li></ul>|
-|`kafka-registry-connect-1`|<ul><li>1 Schema Registry (on broker)</li><li>1 Distrubuted Kafka Connect Worker</li></ul>|
-|`kafka-registry-connect-ksql-1`|<ul><li>1 Schema Registry (on broker)</li><li>1 Distrubuted Kafka Connect Worker</li><li>1 KSQL Server</li></ul>|
+|`kafka-registry-ksql-1`|<ul><li>1 Schema Registry (on broker)</li><li>1 KSQL Server</li></ul>|
+|`kafka-registry-connect-1`|<ul><li>1 Schema Registry (on broker)</li><li>1 Distributed Kafka Connect Worker</li></ul>|
+|`kafka-registry-connect-ksql-1`|<ul><li>1 Schema Registry (on broker)</li><li>1 Distributed Kafka Connect Worker</li><li>1 KSQL Server</li></ul>|
 |`kafka-registry-connect-ksql-c3-1`|<p><i>Requires at least 16 GB RAM</i><ul><li>1 Schema Registry (on broker)</li><li>1 Distrubuted Kafka Connect Worker</li><li>1 KSQL Server</li><li>1 Confluent Control Center (C3)</li></ul>|
 |`kafka-rest-1`|<ul><li>1 Kafka REST Proxy</li></ul>|
 |`kafka-sslCA-1`|<ul><li>1 Certificate Authority</li></ul>|
@@ -106,7 +107,7 @@ ANSIBLE_LIMIT='zk[01]' vagrant provision
 
 If there is a change in the `CP_PROFILE` variable that uses different hostnames for the machines, or once we are done with the Vagrant environment, we can cleanup the cluster by destroying all VMs:
 
-```
+```bash
 vagrant destroy -f
 ```
 
